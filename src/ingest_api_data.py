@@ -8,16 +8,18 @@ import sys
 import pytz
 import logging
 
-# Replace 'YOUR_API_KEY' with your actual API key
+
 aqi_api_key = os.getenv("AQI_API_KEY")
 account = os.getenv("SNOWFLAKE_ACCOUNT")
 user = os.getenv("SNOWFLAKE_USER")
 password = os.getenv("SNOWFLAKE_PASSWORD")
-region = "AWS_US_WEST_2"
-role = "STREAMSETSES_ROLE"
-database = "STREAMSETSES_DB"
+region = "ap-southeast-2"
+role = "SYSADMIN"
+database = "AQI_DB"
 schema = "AQI_SCHEMA"
-warehouse = "STREAMSETSSES_WH"
+warehouse = "ADHOC_WH"
+
+
 
 # initiate logging at info level
 logging.basicConfig(stream=sys.stdout, level=logging.INFO, format='%(levelname)s - %(message)s')
@@ -87,7 +89,7 @@ def get_air_quality_data(api_key, limit):
 
             logging.info(f'File Written to local disk with name: {file_name}')
             
-            stg_location = '@streamsetsses_db.aqi_schema.aqi_raw_data_stg/India/'+today_string+'/'
+            stg_location = '@aqi_db.aqi_schema.aqi_raw_data_stg/India/'+today_string+'/'
             sf_session = snowpark_basic_auth()
             
             logging.info(f'Placing the file, the file name is {file_name} and stage location is {stg_location}')

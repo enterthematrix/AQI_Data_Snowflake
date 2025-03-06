@@ -4,7 +4,7 @@
 -- creating dynamic table from de-duplicated raw data + flattened records
 create or replace dynamic table clean_aqi_dt
     target_lag='downstream'
-    warehouse=STREAMSETSSES_WH
+    warehouse=ADHOC_WH
 as
 WITH air_quality_with_rank AS (
     SELECT

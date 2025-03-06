@@ -35,7 +35,7 @@ select * from raw_aqi limit 10;
 
 -- [OPTIONAL]task to load raw aqi table every hour
 create or replace task copy_air_quality_data
-    warehouse = STREAMSETSSES_WH
+    warehouse = ADHOC_WH
     schedule = 'USING CRON 0 * * * * Pacific/Auckland'
     comment = 'Runs every hour at the start of the hour in Auckland time'
 as
@@ -55,6 +55,10 @@ copy into raw_aqi (index_record_ts,json_data,record_count,json_version,_stg_file
 )
 file_format = (format_name = 'aqi_schema.JSON_FILE_FORMAT')
 ON_ERROR = ABORT_STATEMENT;
+
+use role accountadmin;
+grant execute task, execute managed task on account to role sysadmin;
+use role sysadmin;
 
 -- run the task
 alter task copy_air_quality_data resume;

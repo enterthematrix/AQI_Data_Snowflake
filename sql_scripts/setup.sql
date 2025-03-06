@@ -1,8 +1,27 @@
+-- use sysadmin role.
+use role sysadmin;
+
 -- Create a database and schema for the air quality data
-CREATE DATABASE IF NOT EXISTS streamsetsses_db;
-USE DATABASE streamsetsses_db;
-CREATE SCHEMA IF NOT EXISTS aqi_schema;
+CREATE DATABASE IF NOT EXISTS aqi_db;
+CREATE SCHEMA IF NOT EXISTS aqi_db.aqi_schema;
+USE DATABASE aqi_db;
 USE SCHEMA aqi_schema;
+
+-- create ad-hoc warehouse
+create warehouse if not exists adhoc_wh
+     comment = 'warehosue for all adhoc & development activities'
+     warehouse_size = 'x-small'
+     auto_resume = true
+     auto_suspend = 60
+     enable_query_acceleration = false
+     warehouse_type = 'standard'
+     min_cluster_count = 1
+     max_cluster_count = 1
+     --scaling_policy = 'standard'
+     initially_suspended = true;
+
+show warehouses;
+
 
 -- create an internal stage and enable directory service
 CREATE STAGE IF NOT EXISTS aqi_raw_data_stg

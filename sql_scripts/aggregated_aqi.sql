@@ -1,7 +1,7 @@
 -- aggregated hourly AQI data for cities
 create or replace dynamic table hour_level_agg_city_fact
     target_lag='30 min'
-    warehouse=streamsetsses_wh
+    warehouse=ADHOC_WH
 as
 with city_level_data as (
 select
@@ -39,7 +39,7 @@ select * from HOUR_LEVEL_AGG_CITY_FACT limit 2;
 -- aggregated daily AQI data for cities
 create or replace dynamic table daily_agg_city_fact
     target_lag='30 min'
-    warehouse=streamsetsses_wh
+    warehouse=ADHOC_WH
 as
 with daily_data as (
 select

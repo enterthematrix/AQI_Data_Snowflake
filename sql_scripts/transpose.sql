@@ -121,7 +121,7 @@ select
 -- drop table clean_flatten_aqi_dt;
 create or replace dynamic table clean_flatten_aqi_dt
     target_lag='30 min'
-    warehouse=STREAMSETSSES_WH
+    warehouse=ADHOC_WH
 as
 with flattened_pollutant_measurements as (
     SELECT

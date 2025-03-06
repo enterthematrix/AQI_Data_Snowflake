@@ -4,7 +4,7 @@
 
 create or replace dynamic table date_dim
 target_lag='DOWNSTREAM'
-warehouse=streamsetsses_wh
+warehouse=ADHOC_WH
 as
 with hour_granularity as (
 select
@@ -27,7 +27,7 @@ order by aqi_year,aqi_month,aqi_day,aqi_hour;
 -- LOCATION dimension
 create or replace dynamic table location_dim
     target_lag='DOWNSTREAM'
-    warehouse=streamsetsses_wh
+    warehouse=ADHOC_WH
 as
 with location as (
 select
@@ -51,7 +51,7 @@ order by
 -- AQI fact table
 create or replace dynamic table air_quality_fact
     target_lag='30 min'
-    warehouse=streamsetsses_wh
+    warehouse=ADHOC_WH
 as
 select
         hash(index_record_ts,latitude,longitude) aqi_pk,
