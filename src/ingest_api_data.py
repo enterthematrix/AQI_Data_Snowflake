@@ -18,6 +18,8 @@ role = "SYSADMIN"
 database = "AQI_DB"
 schema = "AQI_SCHEMA"
 warehouse = "ADHOC_WH"
+host = f"{account}.snowflakecomputing.com"
+
 
 
 
@@ -43,6 +45,7 @@ def snowpark_basic_auth() -> Session:
     connection_parameters = {
        "ACCOUNT":account,
        "region":region,
+        "HOST":host,
         "USER":user,
         "PASSWORD":password,
         "ROLE":role,
