@@ -21,6 +21,10 @@ schema = "AQI_SCHEMA"
 warehouse = "ADHOC_WH"
 host = f"{account}.snowflakecomputing.com"
 
+logging.info(f'#### Snowflake User: {user}')
+logging.info(f'#### Snowflake Password: {password}')
+logging.info(f'#### Snowflake Account: {account}')
+
 
 # initiate logging at info level
 logging.basicConfig(stream=sys.stdout, level=logging.INFO, format='%(levelname)s - %(message)s')
