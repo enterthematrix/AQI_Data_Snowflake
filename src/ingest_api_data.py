@@ -62,7 +62,7 @@ def get_air_quality_data(api_key, limit):
     
     # Parameters for the API request
     params = {
-        'api-key': aqi_api_key,
+        'api-key': api_key,
         'format': 'json',
         'limit': limit
     }
