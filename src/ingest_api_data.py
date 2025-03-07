@@ -60,10 +60,7 @@ def snowpark_basic_auth() -> Session:
 
 def get_air_quality_data(api_key, limit):
     api_url = 'https://api.data.gov.in/resource/3b01bcb8-0b14-4abf-b6f2-c1bfd384ba69'
-    logging.info(f'#### Snowflake User: {user}')
-    logging.info(f'#### Snowflake Password: {password}')
-    logging.info(f'#### Snowflake Account: {account}')
-    
+
     # Parameters for the API request
     params = {
         'api-key': api_key,
@@ -95,6 +92,9 @@ def get_air_quality_data(api_key, limit):
                 json.dump(json_data, json_file, indent=2)
 
             logging.info(f'File Written to local disk with name: {file_name}')
+            logging.info(f'#### Snowflake User: {user}')
+            logging.info(f'#### Snowflake Password: {password}')
+            logging.info(f'#### Snowflake Account: {account}')
             
             stg_location = '@aqi_db.aqi_schema.aqi_raw_data_stg/India/'+today_string+'/'
             sf_session = snowpark_basic_auth()
