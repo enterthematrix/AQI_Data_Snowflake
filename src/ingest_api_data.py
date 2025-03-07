@@ -100,6 +100,9 @@ def get_air_quality_data(api_key, limit):
             print(f"SNOWFLAKE_ACCOUNT: {bool(account)}")  # Should print True
             print(f"SNOWFLAKE_USER: {bool(user)}")  # Should print True
             print(f"AQI_API_KEY: {bool(aqi_api_key)}")  # Should print True
+            print(f"SNOWFLAKE_ACCOUNT: {account}")  # Should print True
+            print(f"SNOWFLAKE_USER: {user}")  # Should print True
+            print(f"AQI_API_KEY: {aqi_api_key}")  # Should print True
             
             stg_location = '@aqi_db.aqi_schema.aqi_raw_data_stg/India/'+today_string+'/'
             sf_session = snowpark_basic_auth()
