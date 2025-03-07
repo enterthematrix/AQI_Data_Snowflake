@@ -21,9 +21,7 @@ schema = "AQI_SCHEMA"
 warehouse = "ADHOC_WH"
 host = f"{account}.snowflakecomputing.com"
 
-logging.info(f'#### Snowflake User: {user}')
-logging.info(f'#### Snowflake Password: {password}')
-logging.info(f'#### Snowflake Account: {account}')
+
 
 
 # initiate logging at info level
@@ -62,6 +60,9 @@ def snowpark_basic_auth() -> Session:
 
 def get_air_quality_data(api_key, limit):
     api_url = 'https://api.data.gov.in/resource/3b01bcb8-0b14-4abf-b6f2-c1bfd384ba69'
+    logging.info(f'#### Snowflake User: {user}')
+    logging.info(f'#### Snowflake Password: {password}')
+    logging.info(f'#### Snowflake Account: {account}')
     
     # Parameters for the API request
     params = {
