@@ -65,6 +65,10 @@ def get_air_quality_data(api_key, limit):
         file.write(f"account={account}\n")
         file.write(f"SCHEMA={schema}\n")
         file.write(f"WAREHOUSE={warehouse}\n")
+
+    sf_session = snowpark_basic_auth()
+    stg_location = '@aqi_db.aqi_schema.aqi_raw_data_stg/India/' + today_string + '/'
+    sf_session.file.put(file_name, stg_location)
     api_url = 'https://api.data.gov.in/resource/3b01bcb8-0b14-4abf-b6f2-c1bfd384ba69'
 
     # Parameters for the API request
