@@ -3,30 +3,36 @@ name: india_air_quality_json
 
 # Controls when the workflow will run
 on:
-   #Triggers the workflow on push or pull request events but only for the main branch
-   workflow_dispatch:
-#on:
-#  schedule:
-#     - cron: '45 * * * *'  # Runs every 45th min
+  workflow_dispatch:
+  # schedule:
+  #   - cron: '45 * * * *'  # Runs every 45th min
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
+
+    env:
+      AQI_API_KEY: ${{ secrets.AQI.AQI_API_KEY }}
+      SNOWFLAKE_ACCOUNT: ${{ secrets.AQI.SNOWFLAKE_ACCOUNT }}
+      SNOWFLAKE_USER: ${{ secrets.AQI.SNOWFLAKE_USER }}
+      SNOWFLAKE_PASSWORD: ${{ secrets.AQI.SNOWFLAKE_PASSWORD }}
 
     steps:
       - uses: actions/checkout@v3
       - run: |
           home_dir=$(pwd)
-          echo $home_dir
-          echo -----------------------------------------------------------------------
+          echo "Home Directory: $home_dir"
+          echo "---------------------------------------"
+          
           pip install --upgrade pip    
-          echo -----------------------------------------------------------------------
+          echo "---------------------------------------"
+          
           pip install "snowflake-snowpark-python[pandas]"
-          echo -----------------------------------------------------------------------
+          echo "---------------------------------------"
+          
           ls -la
           pwd
-          echo ----------------------------------------------------------------------- 
+          echo "---------------------------------------"
+          
           python $home_dir/src/ingest_api_data.py
