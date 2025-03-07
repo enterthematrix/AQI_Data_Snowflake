@@ -8,12 +8,16 @@ import sys
 import pytz
 import logging
 
+# Delete after debug
+aqi_api_key = '579b464db66ec23bdd000001afc01b484e774fbc41c05c5ad1384070'
+account = 'XGGIWOA-YH85860'
+user = 'ENTERTHEMATRIX'
+password = 'anKksAQ6MDnr36y'
 
 # aqi_api_key = os.getenv("AQI_API_KEY")
-aqi_api_key = '579b464db66ec23bdd000001afc01b484e774fbc41c05c5ad1384070'
-account = os.getenv("SNOWFLAKE_ACCOUNT")
-user = os.getenv("SNOWFLAKE_USER")
-password = os.getenv("SNOWFLAKE_PASSWORD")
+# account = os.getenv("SNOWFLAKE_ACCOUNT")
+# user = os.getenv("SNOWFLAKE_USER")
+# password = os.getenv("SNOWFLAKE_PASSWORD")
 role = "SYSADMIN"
 database = "AQI_DB"
 schema = "AQI_SCHEMA"
