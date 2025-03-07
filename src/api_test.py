@@ -4,8 +4,8 @@ import requests
 import sys
 import logging
 
-#aqi_api_key = os.getenv("AQI_API_KEY")
-aqi_api_key = '579b464db66ec23bdd000001afc01b484e774fbc41c05c5ad1384070'
+aqi_api_key = os.getenv("AQI_API_KEY")
+# aqi_api_key = '579b464db66ec23bdd000001afc01b484e774fbc41c05c5ad1384070'
 # initiate logging at info level
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG, format='%(levelname)s - %(message)s')
 
@@ -32,6 +32,9 @@ def get_air_quality_data(api_key, limit):
         logging.info('Got the response, check if 200 or not')
         # Check if the request was successful (status code 200)
         if response.status_code == 200:
+
+            sf_session = snowpark_basic_auth()
+
 
             logging.info('Got the JSON Data')
             # Parse the JSON data from the response
