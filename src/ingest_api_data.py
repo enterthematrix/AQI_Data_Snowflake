@@ -92,9 +92,10 @@ def get_air_quality_data(api_key, limit):
                 json.dump(json_data, json_file, indent=2)
 
             logging.info(f'File Written to local disk with name: {file_name}')
-            logging.info(f'#### Snowflake User: {user}')
-            logging.info(f'#### Snowflake Password: {password}')
-            logging.info(f'#### Snowflake Account: {account}')
+            # Print debug messages
+            print(f"SNOWFLAKE_ACCOUNT: {bool(account)}")  # Should print True
+            print(f"SNOWFLAKE_USER: {bool(user)}")  # Should print True
+            print(f"AQI_API_KEY: {bool(aqi_api_key)}")  # Should print True
             
             stg_location = '@aqi_db.aqi_schema.aqi_raw_data_stg/India/'+today_string+'/'
             sf_session = snowpark_basic_auth()
