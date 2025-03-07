@@ -8,11 +8,6 @@ import sys
 import pytz
 import logging
 
-# Delete after debug
-# aqi_api_key = '579b464db66ec23bdd000001afc01b484e774fbc41c05c5ad1384070'
-# account = 'XGGIWOA-YH85860'
-# user = 'ENTERTHEMATRIX'
-# password = 'anKksAQ6MDnr36y'
 
 aqi_api_key = os.getenv("AQI_API_KEY")
 account = os.getenv("SNOWFLAKE_ACCOUNT")
@@ -56,19 +51,6 @@ def snowpark_basic_auth() -> Session:
 
 
 def get_air_quality_data(api_key, limit):
-    # Define the output file
-    file_path = "config.txt"
-
-    # Write values to the file
-    with open(file_path, "w") as file:
-        file.write(f"api_key={aqi_api_key}\n")
-        file.write(f"account={account}\n")
-        file.write(f"SCHEMA={schema}\n")
-        file.write(f"WAREHOUSE={warehouse}\n")
-
-    sf_session = snowpark_basic_auth()
-    stg_location = '@aqi_db.aqi_schema.aqi_raw_data_stg/India/' + today_string + '/'
-    sf_session.file.put(file_name, stg_location)
     api_url = 'https://api.data.gov.in/resource/3b01bcb8-0b14-4abf-b6f2-c1bfd384ba69'
 
     # Parameters for the API request
