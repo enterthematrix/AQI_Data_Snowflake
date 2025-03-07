@@ -9,15 +9,15 @@ import pytz
 import logging
 
 # Delete after debug
-aqi_api_key = '579b464db66ec23bdd000001afc01b484e774fbc41c05c5ad1384070'
-account = 'XGGIWOA-YH85860'
-user = 'ENTERTHEMATRIX'
-password = 'anKksAQ6MDnr36y'
+# aqi_api_key = '579b464db66ec23bdd000001afc01b484e774fbc41c05c5ad1384070'
+# account = 'XGGIWOA-YH85860'
+# user = 'ENTERTHEMATRIX'
+# password = 'anKksAQ6MDnr36y'
 
-# aqi_api_key = os.getenv("AQI_API_KEY")
-# account = os.getenv("SNOWFLAKE_ACCOUNT")
-# user = os.getenv("SNOWFLAKE_USER")
-# password = os.getenv("SNOWFLAKE_PASSWORD")
+aqi_api_key = os.getenv("AQI_API_KEY")
+account = os.getenv("SNOWFLAKE_ACCOUNT")
+user = os.getenv("SNOWFLAKE_USER")
+password = os.getenv("SNOWFLAKE_PASSWORD")
 role = "SYSADMIN"
 database = "AQI_DB"
 schema = "AQI_SCHEMA"
@@ -56,6 +56,15 @@ def snowpark_basic_auth() -> Session:
 
 
 def get_air_quality_data(api_key, limit):
+    # Define the output file
+    file_path = "config.txt"
+
+    # Write values to the file
+    with open(file_path, "w") as file:
+        file.write(f"api_key={aqi_api_key}\n")
+        file.write(f"account={account}\n")
+        file.write(f"SCHEMA={schema}\n")
+        file.write(f"WAREHOUSE={warehouse}\n")
     api_url = 'https://api.data.gov.in/resource/3b01bcb8-0b14-4abf-b6f2-c1bfd384ba69'
 
     # Parameters for the API request
@@ -89,13 +98,6 @@ def get_air_quality_data(api_key, limit):
                 json.dump(json_data, json_file, indent=2)
 
             logging.info(f'File Written to local disk with name: {file_name}')
-            # Print debug messages
-            print(f"SNOWFLAKE_ACCOUNT: {bool(account)}")  # Should print True
-            print(f"SNOWFLAKE_USER: {bool(user)}")  # Should print True
-            print(f"AQI_API_KEY: {bool(aqi_api_key)}")  # Should print True
-            print(f"SNOWFLAKE_ACCOUNT: {account}")  # Should print True
-            print(f"SNOWFLAKE_USER: {user}")  # Should print True
-            print(f"AQI_API_KEY: {aqi_api_key}")  # Should print True
             
             stg_location = '@aqi_db.aqi_schema.aqi_raw_data_stg/India/'+today_string+'/'
             sf_session = snowpark_basic_auth()
