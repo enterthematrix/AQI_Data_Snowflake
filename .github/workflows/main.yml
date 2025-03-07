@@ -13,10 +13,10 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      AQI_API_KEY: ${{ secrets.AQI.AQI_API_KEY }}
-      SNOWFLAKE_ACCOUNT: ${{ secrets.AQI.SNOWFLAKE_ACCOUNT }}
-      SNOWFLAKE_USER: ${{ secrets.AQI.SNOWFLAKE_USER }}
-      SNOWFLAKE_PASSWORD: ${{ secrets.AQI.SNOWFLAKE_PASSWORD }}
+      AQI_API_KEY: ${{ secrets.AQI_API_KEY }}
+      SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+      SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
+      SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
 
     steps:
       - uses: actions/checkout@v3
