@@ -20,6 +20,9 @@ jobs:
       - name: Install Dependencies
         run: pip install "snowflake-snowpark-python[pandas]"
 
+      - name: Install more
+        run: pip install --upgrade snowflake-snowpark-python urllib3
+
       - name: Run Python Script with Secrets
         env:
           SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}

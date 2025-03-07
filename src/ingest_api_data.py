@@ -15,7 +15,7 @@ aqi_api_key = '579b464db66ec23bdd000001afc01b484e774fbc41c05c5ad1384070'
 # user = os.getenv("SNOWFLAKE_USER")
 # password = os.getenv("SNOWFLAKE_PASSWORD")
 account='XGGIWOA-YH85860',
-user = 'enterthematrix'
+user = 'ENTERTHEMATRIX'
 password = 'anKksAQ6MDnr36y'
 # region = "ap-southeast-2"
 region = "AWS_AP_SOUTHEAST_2"
@@ -49,8 +49,6 @@ today_string = current_time_ist.strftime('%Y_%m_%d')
 def snowpark_basic_auth() -> Session:
     connection_parameters = {
        "ACCOUNT":account,
-       "region":region,
-        "HOST":host,
         "USER":user,
         "PASSWORD":password,
         "ROLE":role,
