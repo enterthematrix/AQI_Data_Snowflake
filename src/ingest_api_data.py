@@ -11,7 +11,8 @@ import logging
 
 # aqi_api_key = os.getenv("AQI_API_KEY")
 aqi_api_key = '579b464db66ec23bdd000001afc01b484e774fbc41c05c5ad1384070'
-account = os.getenv("SNOWFLAKE_ACCOUNT")
+#account = os.getenv("SNOWFLAKE_ACCOUNT")
+account='XGGIWOA-YH85860',
 user = os.getenv("SNOWFLAKE_USER")
 password = os.getenv("SNOWFLAKE_PASSWORD")
 region = "ap-southeast-2"
