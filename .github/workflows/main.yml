@@ -11,23 +11,15 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    env:
-      AQI_API_KEY: ${{ secrets.AQI_API_KEY }}
-      SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
-      SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
-      SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
-
     steps:
       - uses: actions/checkout@v3
-
-      - name: Check if Secrets are Loaded
-        run: |
-          if [ -z "$AQI_API_KEY" ]; then echo "❌ AQI_API_KEY is NOT set"; else echo "✅ AQI_API_KEY is set"; fi
-          if [ -z "$SNOWFLAKE_ACCOUNT" ]; then echo "❌ SNOWFLAKE_ACCOUNT is NOT set"; else echo "✅ SNOWFLAKE_ACCOUNT is set"; fi
-
       - name: Install Dependencies and Run Script
         run: |
+          echo "🔍 Checking environment variables..."
+          export AQI_API_KEY="${{ secrets.AQI_API_KEY }}"
+          export SNOWFLAKE_ACCOUNT="${{ secrets.SNOWFLAKE_ACCOUNT }}"
+          export SNOWFLAKE_USER="${{ secrets.SNOWFLAKE_USER }}"
+          export SNOWFLAKE_PASSWORD="${{ secrets.SNOWFLAKE_PASSWORD }}"
           home_dir=$(pwd)
           echo "Home Directory: $home_dir"
           echo "---------------------------------------"
