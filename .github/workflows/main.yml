@@ -29,4 +29,4 @@ jobs:
           ls -la
           pwd
           echo ----------------------------------------------------------------------- 
-          python $home_dir/src/ingest_api_data.py
+          python $home_dir/src/api_test.py
