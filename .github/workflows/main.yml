@@ -11,15 +11,15 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      AQI_SECRET: ${{ secrets.AQI_SECRET }}
+      SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+      SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
+      SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
     steps:
       - uses: actions/checkout@v3
       - name: Install Dependencies and Run Script
         run: |
-          echo "🔍 Checking environment variables..."
-          export AQI_API_KEY="${{ secrets.AQI_API_KEY }}"
-          export SNOWFLAKE_ACCOUNT="${{ secrets.SNOWFLAKE_ACCOUNT }}"
-          export SNOWFLAKE_USER="${{ secrets.SNOWFLAKE_USER }}"
-          export SNOWFLAKE_PASSWORD="${{ secrets.SNOWFLAKE_PASSWORD }}"
           home_dir=$(pwd)
           echo "Home Directory: $home_dir"
           echo "---------------------------------------"
