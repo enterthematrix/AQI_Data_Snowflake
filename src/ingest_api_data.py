@@ -14,7 +14,7 @@ aqi_api_key = '579b464db66ec23bdd000001afc01b484e774fbc41c05c5ad1384070'
 #account = os.getenv("SNOWFLAKE_ACCOUNT")
 # user = os.getenv("SNOWFLAKE_USER")
 # password = os.getenv("SNOWFLAKE_PASSWORD")
-account='XGGIWOA-YH85860'
+account = 'XGGIWOA-YH85860'
 user = 'ENTERTHEMATRIX'
 password = 'anKksAQ6MDnr36y'
 # region = "ap-southeast-2"
@@ -48,13 +48,13 @@ today_string = current_time_ist.strftime('%Y_%m_%d')
 # Following credential has to come using secret whie running in automated way
 def snowpark_basic_auth() -> Session:
     connection_parameters = {
-       "ACCOUNT":account,
-        "USER":user,
-        "PASSWORD":password,
-        "ROLE":role,
-        "DATABASE":database,
-        "SCHEMA":schema,
-        "WAREHOUSE":warehouse
+        "ACCOUNT": account,
+        "USER": user,
+        "PASSWORD": password,
+        "ROLE": role,
+        "DATABASE": database,
+        "SCHEMA": schema,
+        "WAREHOUSE": warehouse
     }
     # creating snowflake session object
     return Session.builder.configs(connection_parameters).create()
