@@ -1,5 +1,4 @@
 import os
-
 import requests
 import json
 from datetime import datetime
@@ -8,7 +7,7 @@ import sys
 import pytz
 import logging
 
-
+# Get the secrets from the GitHub secrets
 aqi_api_key = os.getenv("AQI_API_KEY")
 account = os.getenv("SNOWFLAKE_ACCOUNT")
 user = os.getenv("SNOWFLAKE_USER")
@@ -21,8 +20,8 @@ warehouse = "ADHOC_WH"
 # initiate logging at info level
 logging.basicConfig(stream=sys.stdout, level=logging.INFO, format='%(levelname)s - %(message)s')
 
-# Set the IST time zone
-ist_timezone = pytz.timezone('Asia/Kolkata')
+# Set the time zone
+ist_timezone = pytz.timezone('Pacific/Auckland')
 
 # Get the current time in IST
 current_time_ist = datetime.now(ist_timezone)
@@ -104,18 +103,13 @@ def get_air_quality_data(api_key, limit):
             return json_data
 
         else:
-            # Print an error message if the request was unsuccessful
             logging.error(f"Error: {response.status_code} - {response.text}")
             sys.exit(1)
-            #return None
 
     except Exception as e:
         # Handle exceptions, if any
         logging.error(f"An error occurred: {e}")
         sys.exit(1)
-        #return None
-    #if comes to this line.. it will return nothing
-    return None
 
 
 limit_value = 4000
