@@ -1,7 +1,13 @@
 name: india_air_quality_json
 
+# Trigger the workflow manually
 on:
   workflow_dispatch:
+
+# Trigger the workflow every 45th minute
+#on:
+#  schedule:
+#     - cron: '45 * * * *'  # Runs every 45th min
 
 jobs:
   build:
