@@ -18,17 +18,17 @@ jobs:
 
 
     steps:
-      - name: get secrets
+      - name: get aqi data
+      - uses: actions/checkout@v3
         env:
           AQI_API_KEY: ${{ secrets.AQI_API_KEY }}
           SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
           SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
           SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
-
-      - uses: actions/checkout@v3
       - run: |
           home_dir=$(pwd)
           echo $home_dir
+          echo "Using API key: $AQI_API_KEY"
           echo -----------------------------------------------------------------------
           pip install --upgrade pip    
           echo -----------------------------------------------------------------------
